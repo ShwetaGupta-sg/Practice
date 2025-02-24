@@ -16,9 +16,8 @@
 
 <!--    &lt;!&ndash; Define Employee Repository &ndash;&gt;-->
     <bean id="employeeRepository" class="org.data.repositories.EmployeeRepositoryImpl"/>
-    <context:component-scan base-package="org.data" />
     <!-- Enable Component Scanning -->
-<!--    <context:component-scan base-package="org.data.repositories"/>-->
+    <context:component-scan base-package="org.data"/>
 
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -49,7 +48,8 @@
         <property name="password" value="${jdbc.password}"/>
 
     </bean>
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" primary="true">
+<!--    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" primary="true">-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" scope="singleton">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocations">
             <list>
@@ -57,12 +57,12 @@
             </list>
         </property>
     </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <context:component-scan base-package="org.data"/>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
 </beans>

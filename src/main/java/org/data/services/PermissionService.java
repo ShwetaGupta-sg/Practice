@@ -1,4 +1,8 @@
 package org.data.services;
 
-public class PermissionService {
+import org.data.entities.Employee;
+
+public interface PermissionService {
+
+    boolean hasEditPermission(Long employeeId);
 }

@@ -1,17 +1,20 @@
 package org.data.repositories;
 import org.data.entities.Employee;
-import org.data.entities.User;
-
 import java.util.List;
 
 public interface EmployeeRepository {
-    void saveEmployee(Employee employee);
+//    void saveEmployee(Employee employee);
+//
+//    List<Employee> getAllEmployees();
+//
+//    Employee getEmployeeById(int id);
+//
+//
+//    User checkCredentials(String username, String password);
 
-    List<Employee> getAllEmployees();
+    void save(Employee employee);
+    Employee findByUsername(String username);
+    List<Employee> findAll();
 
-    Employee getEmployeeById(int id);
-
-
-    User checkCredentials(String username, String password);
-
+    Employee findById(Long id);
 }

@@ -1,15 +1,16 @@
 package org.data.services;
 
 import org.data.entities.Employee;
-import org.data.entities.User;
-import org.springframework.stereotype.Service;
+import org.data.entities.Role;
 
 import java.util.List;
 
 
 public interface EmployeeService {
-        void addEmployee(String name, int age, String address, User user);
-    void saveEmployee(Employee employee);
+//    void saveEmployee(Employee employee);
     List<Employee> getAllEmployees();
-    Employee getEmployeeById(int id);
+    Employee getEmployeeById(Long id);
+
+
+    void addEmployee(String name, int age, String address, Role role);
 }

@@ -5,7 +5,7 @@
 
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/employee</property> <!-- BD Mane -->
+        <property name="connection.url">jdbc:postgresql://localhost:5432/employees</property> <!-- BD Mane -->
         <property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
         <property name="connection.username">postgres</property> <!-- DB User -->
         <property name="connection.password">12345</property> <!-- DB Password -->
@@ -20,7 +20,7 @@
 
 
         <mapping class="org.data.entities.Employee"/>
-        <mapping class="org.data.entities.User"/>
+        <mapping class="org.data.entities.Permission"/>
 
 
     </session-factory>

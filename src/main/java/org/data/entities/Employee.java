@@ -1,6 +1,7 @@
 package org.data.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -9,6 +10,12 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column(nullable = false)
     private String name;
@@ -19,42 +26,23 @@ public class Employee {
     @Column(nullable = false)
     private String address;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public Employee() {}
-
-    public Employee(String name, int age, String address, User user) {
-        this.name = name;
-        this.age = age;
-        this.address = address;
-        this.user = user;
+    public Set<Permission> getPermissions() {
+        return permissions;
     }
 
-    // ✅ Getters and Setters
-    public Long getId() {
-        return id;
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Role getRole() {
+        return role;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getAddress() {
@@ -65,11 +53,54 @@ public class Employee {
         this.address = address;
     }
 
-    public User getUser() {
-        return user;
+    public int getAge() {
+        return age;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAge(int age) {
+        this.age = age;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "employee_permissions",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id")
+    )
+    private Set<Permission> permissions;
+
+
+
 }

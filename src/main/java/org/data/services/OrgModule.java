@@ -1,7 +1,6 @@
 package org.data.services;
 
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.commons.Configuration;
 import org.apache.tapestry5.commons.MappedConfiguration;
 import org.apache.tapestry5.commons.OrderedConfiguration;
 import org.apache.tapestry5.http.services.Request;
@@ -10,16 +9,14 @@ import org.apache.tapestry5.http.services.RequestHandler;
 import org.apache.tapestry5.http.services.Response;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
-import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Local;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
 import org.apache.tapestry5.ioc.services.RegistryShutdownHub;
-import org.apache.tapestry5.ioc.services.RegistryShutdownListener;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.data.repositories.EmployeeRepository;
 import org.data.repositories.EmployeeRepositoryImpl;
-import org.data.repositories.UserRepository;
-import org.data.repositories.UserRepositoryImpl;
+import org.data.repositories.PermissionRepository;
+import org.data.repositories.PermissionRepositoryImpl;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -33,12 +30,11 @@ public class OrgModule {
 
     public static void bind(ServiceBinder binder)
     {
-//        binder.bind(EmpService.class, EmpServiceImpl.class);
         binder.bind(EmployeeRepository.class, EmployeeRepositoryImpl.class).eagerLoad();
         binder.bind(LoginService.class, LoginServiceImpl.class);
+        binder.bind(PermissionService.class, PermissionServiceImpl.class);
         binder.bind(EmployeeService.class, EmployeeServiceImpl.class).eagerLoad();
-        binder.bind(UserRepository.class, UserRepositoryImpl.class).eagerLoad();
-
+        binder.bind(PermissionRepository.class, PermissionRepositoryImpl.class).eagerLoad();
 
         // Make bind() calls on the binder object to define most IoC services.
         // Use service builder methods (example below) when the implementation

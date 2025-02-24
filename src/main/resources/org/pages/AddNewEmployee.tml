@@ -10,8 +10,6 @@
         }
     </style>
 </head>
-<t:if test="isAdmin">
-    <p>Is Admin: ${isAdmin}</p>
     <t:form t:id="addEmployeeForm">
         <p>
             <label>Name:</label>
@@ -25,7 +23,11 @@
             <label>Address:</label>
             <t:textfield t:value="address" t:validate="required"/>
         </p>
-        <t:select t:id="role" model="roleOptions" value="selectedRole"/>
+        <label>Role:
+            <t:select t:id="selectedRole" model="roleOptions" value="selectedRole"/>
+        </label><br/>
+
+
         <t:if test="errorMessage">
             <div class="error">${errorMessage}</div>
         </t:if>
@@ -34,10 +36,6 @@
             <button type="submit">Add Employee</button>
         </p>
 </t:form>
-</t:if>
-<t:else>
-    <p>You do not have permission to add employees.</p>
-</t:else>
 <t:pagelink page="EmployeeList">Back to Employee List</t:pagelink>
 
 </html>

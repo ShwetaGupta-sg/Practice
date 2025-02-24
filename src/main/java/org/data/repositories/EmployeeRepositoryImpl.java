@@ -1,126 +1,53 @@
 package org.data.repositories;
 
-import org.apache.tapestry5.ioc.annotations.Inject;
 import org.data.entities.Employee;
-import org.data.entities.User;
-import org.hibernate.SessionFactory;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.HashMap;
+import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
-//    @Inject
     @Autowired
     private SessionFactory sessionFactory;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
-//    private static final Map<String, String> users = new HashMap<>();
-//
-//    static {
-//        users.put("admin", "password123");
-//        users.put("user", "userpass");
+//    private Session getCurrentSession() {
+//        return sessionFactory.getCurrentSession();
 //    }
 
     @Override
-    public User checkCredentials(String username, String password) {
-        Transaction transaction = null;
-        User user = null;
-
-        try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
-
-            user = session.createQuery("FROM User WHERE username = :username AND password = :password", User.class)
-                    .setParameter("username", username)
-                    .setParameter("password", password)
-                    .uniqueResult();
-
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
-        }
-        return user;
+    public void save(Employee employee) {
+        sessionFactory.openSession().saveOrUpdate(employee);
     }
-
-//    @Override
-//    public boolean checkCredentials(String username, String password) {
-//        return users.containsKey(username) && users.get(username).equals(password);
-//    }
-
-//    @Override
-//    public void saveEmployee(Employee employee) {
-//        try (Session session = sessionFactory.openSession()) {
-//            Transaction tx = session.beginTransaction();
-//            session.save(employee);
-//            tx.commit();
-//        }
-//    }
 
     @Override
-    public void saveEmployee(Employee employee) {
-        if (sessionFactory == null) {
-            throw new IllegalStateException("SessionFactory is null! Check OrgModule configuration.");
-        }
-
-        try (Session session = sessionFactory.openSession()) {
-            Transaction tx = session.beginTransaction();
-            session.save(employee);
-            tx.commit();
+    public Employee findByUsername(String username) {
+        try (Session session = sessionFactory.openSession()) {  // Open session explicitly
+            Query<Employee> query = session.createQuery("FROM Employee WHERE username = :username", Employee.class);
+            query.setParameter("username", username);
+            return query.uniqueResult();
         }
     }
-    @Override
-    public List<Employee> getAllEmployees() {
-        return entityManager.createQuery("SELECT e FROM Employee e JOIN FETCH e.user", Employee.class).getResultList();
-    }
-//    @Override
-//    public List<Employee> getAllEmployees() {
-//        if (sessionFactory == null) {
-//            throw new IllegalStateException("SessionFactory is NULL. Check Hibernate setup in OrgModule.");
-//        }
-//
-//        try (Session session = sessionFactory.openSession()) {
-//            return session.createCriteria(Employee.class).list();
-//        }
-//    }
 
     @Override
-    public Employee getEmployeeById(int id) {
-        if (sessionFactory == null) {
-            throw new IllegalStateException("SessionFactory is NULL. Check Hibernate setup in OrgModule.");
-        }
-
-        try (Session session = sessionFactory.openSession()) {
-            return (Employee) session.createCriteria(Employee.class)
-                    .add(Restrictions.eq("id", id))
-                    .uniqueResult();
-        }
+    public List<Employee> findAll() {
+        Criteria criteria = sessionFactory.openSession().createCriteria(Employee.class);
+        return criteria.list();
     }
 
-//    @Override
-//    public List<Employee> getAllEmployees() {
-//        try (Session session = sessionFactory.openSession()) {
-//            return session.createCriteria(Employee.class).list();
-//        }
-//    }
-//
-//    @Override
-//    public Employee getEmployeeById(int id) {
-//        try (Session session = sessionFactory.openSession()) {
-//            return (Employee) session.createCriteria(Employee.class)
-//                    .add(Restrictions.eq("id", id))
-//                    .uniqueResult();
-//        }
-//    }
+    @Override
+    public Employee findById(Long id) {
+        return sessionFactory.openSession().get(Employee.class, id);
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("SessionFactory instance in EmployeeRepositoryImpl: " + System.identityHashCode(sessionFactory));
+    }
 }
