@@ -1,0 +1,29 @@
+
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
+<head>
+    <title>Individual Employee Details</title>
+    <style>
+        .button { padding: 5px 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .button:disabled { background: #ccc; }
+    </style>
+</head>
+<body class="container">
+<t:header />
+
+<h2>Individual Employee List</h2>
+
+<!--<div class="Individual employee-details">-->
+<!--    <p><strong>ID:</strong> ${employee.id}</p>-->
+<!--    <p><strong>Name:</strong> ${employee.name}</p>-->
+<!--    <p><strong>Age:</strong> ${employee.age}</p>-->
+<!--    <p><strong>Address:</strong> ${employee.address}</p>-->
+<!--</div>-->
+
+<t:grid source="employees" row="employee" pagerPosition="bottom">
+</t:grid>
+<t:if test="canEdit">
+    <button class="button" t:id="editEmployee">Edit Employee</button>
+</t:if>
+<t:pagelink page="employeeList">Back to Employee List</t:pagelink>
+</body>
+</html>

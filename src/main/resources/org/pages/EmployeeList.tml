@@ -7,10 +7,10 @@
 <h2>Employee Details</h2>
 
 <!-- Debugging: Show admin status -->
-<p>Is Admin: ${isAdmin}</p>
-
+<!--<p>Is Admin: ${isAdmin}</p>-->
+<p>Logged in as: ${employee.name}</p>
 <!-- Show "Add Employee" button only for Admins -->
-<t:if test="showAddButton">
+<t:if test="isAdmin">
     <t:pagelink page="AddNewEmployee">Add New Employee</t:pagelink>
 </t:if>
 <t:if test="!isAdmin">
@@ -19,16 +19,16 @@
 
 <!-- Employee List -->
 <t:grid source="employees" row="employee" rowsPerPage="4" pagerPosition="bottom">
-<!--    <p:idCell>-->
-<!--        <t:pagelink page="IndividualEmployee" context="employee.id">View Details</t:pagelink>-->
-<!--    </p:idCell>-->
+    <p:idCell>
+        <t:pagelink page="IndividualEmployee" context="employee.id">View Details</t:pagelink>
+    </p:idCell>
 
 <!--    <t:if test="employee.permissions.contains('EDIT')">-->
 <!--        <t:actionlink context="employee.id">Edit</t:actionlink>-->
 <!--    </t:if>-->
 
     <t:if test="canEdit(employee)">
-        <t:pagelink page="IndividualEmployee" context="${employee.id}">Edit</t:pagelink>
+        <t:pagelink page="AddNewEmployee" context="${employee.id}">Edit</t:pagelink>
     </t:if>
 
 </t:grid>

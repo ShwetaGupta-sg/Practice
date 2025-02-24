@@ -1,0 +1,36 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
+<t:header />
+<head>
+    <title>Employee List</title>
+</head>
+<body class="container">
+<h2>Employee Details</h2>
+
+<!-- Debugging: Show admin status -->
+<!--<p>Is Admin: ${isAdmin}</p>-->
+<p>Logged in as: ${employee.name}</p>
+<!-- Show "Add Employee" button only for Admins -->
+<t:if test="isAdmin">
+    <t:pagelink page="AddNewEmployee">Add New Employee</t:pagelink>
+</t:if>
+<t:if test="!isAdmin">
+    <p>You do not have permission to add employees.</p>
+</t:if>
+
+<!-- Employee List -->
+<t:grid source="employees" row="employee" rowsPerPage="4" pagerPosition="bottom">
+    <p:idCell>
+        <t:pagelink page="IndividualEmployee" context="employee.id">View Details</t:pagelink>
+    </p:idCell>
+
+<!--    <t:if test="employee.permissions.contains('EDIT')">-->
+<!--        <t:actionlink context="employee.id">Edit</t:actionlink>-->
+<!--    </t:if>-->
+
+    <t:if test="canEdit(employee)">
+        <t:pagelink page="AddNewEmployee" context="${employee.id}">Edit</t:pagelink>
+    </t:if>
+
+</t:grid>
+</body>
+</html>

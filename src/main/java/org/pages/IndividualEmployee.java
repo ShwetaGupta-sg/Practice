@@ -29,6 +29,8 @@ public class IndividualEmployee {
     @InjectPage
     private EmployeeList employeeList;
 
+    @Property
+    private boolean isAdmin;
     @Inject
     private RequestGlobals requestGlobals;
 
