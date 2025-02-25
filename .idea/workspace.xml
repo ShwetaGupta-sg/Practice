@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecf55cb5-51dd-422b-8aac-19a690aed7de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/pages/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pages/EmployeeList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/pages/IndividualEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/pages/IndividualEmployee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/pages/EmployeeList.tml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/pages/EmployeeList.tml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/pages/EmployeeList.tml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/pages/EmployeeList.tml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,23 +38,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven. [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven. [jetty,jetty:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven. [jetty:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TapestryApplication [clean,install,-U.].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TapestryApplication [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TapestryApplication [idea:idea].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TapestryApplication [jetty:run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/EmployeeManagement&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven. [clean,install].executor": "Run",
+    "Maven. [jetty,jetty:run].executor": "Run",
+    "Maven. [jetty:run].executor": "Run",
+    "Maven.TapestryApplication [clean,install,-U.].executor": "Run",
+    "Maven.TapestryApplication [clean,install].executor": "Run",
+    "Maven.TapestryApplication [idea:idea].executor": "Run",
+    "Maven.TapestryApplication [jetty:run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/shwet/OneDrive/Documents/EmployeeManagement"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn jetty jetty:run" />
@@ -62,6 +63,19 @@
       <command value="mvn clean install" />
       <command value="mvn jetty:run" />
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="TapestryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="TapestryApplication" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

@@ -18,9 +18,9 @@
 </t:if>
 
 <!-- Employee List -->
-<t:grid source="employees" row="employee" rowsPerPage="4" pagerPosition="bottom">
+<t:grid source="employees" row="employee" pagerPosition="bottom">
     <p:idCell>
-        <t:pagelink page="IndividualEmployee" context="employee.id">View Details</t:pagelink>
+        <t:pagelink page="IndividualEmployee" context="employee.id">View</t:pagelink>
     </p:idCell>
 
 <!--    <t:if test="employee.permissions.contains('EDIT')">-->
@@ -28,7 +28,7 @@
 <!--    </t:if>-->
 
     <t:if test="canEdit(employee)">
-        <t:pagelink page="AddNewEmployee" context="${employee.id}">Edit</t:pagelink>
+        <t:pagelink page="IndividualEmployee" context="${employee.id}">Edit</t:pagelink>
     </t:if>
 
 </t:grid>
